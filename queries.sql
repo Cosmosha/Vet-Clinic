@@ -4,12 +4,10 @@
 SELECT * from animals WHERE name LIKE '%mon%';
 
 -- List the name of all animals born between 2016 and 2019.
-SELECT name from animals WHERE date_of_birth BETWEEN '2016-01-01' AND '2019-01-01';
+SELECT name FROM animals WHERE EXTRACT(year FROM date_of_birth) BETWEEN 2016 AND 2019;
 
 -- List the name of all animals that are neutered and have less than 3 escape attempts
-SELECT name from animals
-  WHERE (neutered = 't') 
-  AND escape_attempts >= 3;
+SELECT name FROM animals WHERE neutered = 'true' AND escape_attempts < '3';
 
 -- List the date of birth of all animals named either "Agumon" or "Pikachu".
 SELECT date_of_birth FROM animals WHERE name = 'Agumon' OR name = 'Pikachu';
@@ -19,7 +17,7 @@ SELECT name, escape_attempts FROM  animals
   WHERE weight_kg >= 10.5;
 
 -- Find all animals that are neutered.
-SELECT * FROM animals WHERE animals.neutered = 't';
+SELECT * FROM animals WHERE animals.neutered = 'true';
 
 -- Find all animals not named Gabumon.
 SELECT * FROM animals WHERE animals.name != 'Gabumon';
